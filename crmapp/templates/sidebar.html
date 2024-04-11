@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    {%load static%}
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CRM</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.12.9/dist/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+    <script src="https://kit.fontawesome.com/30ecc6e708.js" crossorigin="anonymous"></script>
+</head>
+<style>
+    .bcolor{
+        background:rgb(255, 255, 255);
+        background: linear-gradient(90deg, rgb(255, 255, 255,1) 40%, rgb(255, 255, 255,1) 100%);
+        
+    }
+    .nv{
+        font-family: Verdana, Geneva, Tahoma, sans-serif;
+    }
+    .nv a{
+        color: black;
+    }
+    .nitem {
+    position: relative;
+    
+    }
+    .nitem::after {
+        content: '';
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        width: 0; 
+        height: 2px;
+        background-color:midnightblue;
+        color: white;
+        transition: width 0.3s ease; 
+    }
+
+    .nitem:hover::after {
+        width: 75%; 
+        
+    }
+
+    .sidebar {
+    width: 250px; 
+    min-height: 100vh; 
+    position: fixed; 
+    top: 0; 
+    left: 0; 
+    overflow-y: auto; 
+}
+
+.sidebar img {
+    max-width: 100%; 
+}
+
+.nav {
+    padding-top: 20px; 
+}
+
+.nav-link {
+    color: #343a40; 
+}
+
+.nav-link.active {
+    font-weight: bold; 
+    background-color:purple;
+    color: white;
+
+    border-radius: 5px;
+}
+
+.nitem {
+    cursor: pointer; 
+}
+
+@media (max-width: 768px) {
+    #ul{
+        padding-top: 80px;
+    }
+    #mainBody{
+        border-top-left-radius: 0px;
+    }
+    
+    }
+
+    @media (min-width: 768px) {
+    
+    #mainBody{
+        border-top-left-radius: 50px;
+    }
+    
+    }
+
+    
+</style>
+<body>
+    <div class="container-fluid" >
+        <div class="row" >
+            <!-- Collapse Button -->
+            <button style="z-index: 101;background-color: transparent;position: fixed;" class="btn d-md-none" type="button" data-toggle="collapse" data-target="#sidebarCollapse" aria-expanded="false" aria-controls="sidebarCollapse">
+                <span class="" style="z-index: 101;"><i class="fa-solid fa-bars"></i></span>
+            </button>
+    
+            <!-- Sidebar Column -->
+            <div class="col-md-2 collapse d-md-block bcolor" id="sidebarCollapse" style="z-index: 100;">
+                <div class="sidebar " >
+                    <ul class="nav flex-column nv bcolor" style="min-height: 100vh;" id="ul">
+                        <li class="nav-item px-3 my-3">
+                            <a style="text-decoration: none;" href="#"><img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTjZXUckqj8bIuTPuIdBNo0h-cEA1LkjqOT5A&s" alt="logo" height="80"></a>   
+                        </li>
+                        <li class="nav-item px-3">
+                            <a class="nav-link nitem " id="link4" href="{% url "dashboard" %}">Dashboard</a>
+                        </li>
+                        <li class="nav-item px-3">
+                            <a class="nav-link nitem " id="link5" href="#">Archive</a>
+                        </li>
+                        <li class="nav-item ">
+                            <a class="nav-link nitem ml-md-3" href="#">Software</a>
+                          </li>
+                          <li class="nav-item ">
+                            <a class="nav-link nitem  ml-md-3" href="#">Pricing</a>
+                          </li>
+                          <li class="nav-item ">
+                              <a class="nav-link nitem  ml-md-3" href="#">Resources</a>
+                          </li>
+                          <li class="nav-item ">
+                            <a class="nav-link nitem  ml-md-3" href="#">Contact</a>
+                          </li>
+                    </ul>
+                </div>
+            </div>
+            <!-- Main Content Column -->
+            <div class="col-md-10" style="background-color:lightslategray; width: 100%;" id="mainBody">
+                {% block content %}
+                {% endblock %}
+            </div>
+        </div>
+    </div>
+    
+    <script>
+    // Function to handle click event
+function handleClick(event) {
+    // Remove the 'active' class from all links
+    document.querySelectorAll('.nitem').forEach(link => {
+        link.classList.remove('active');
+    });
+
+    // Add the 'active' class to the clicked link
+    this.classList.add('active');
+
+    // Store the ID of the clicked link in local storage
+    localStorage.setItem('activeLink', this.id);
+}
+
+// Add click event listener to each link
+document.querySelectorAll('.nitem').forEach(link => {
+    link.addEventListener('click', handleClick);
+});
+
+// On page load, check if there's an active link in local storage and apply the active state
+document.addEventListener('DOMContentLoaded', function() {
+    const activeLinkId = localStorage.getItem('activeLink');
+    if (activeLinkId) {
+        const activeLink = document.getElementById(activeLinkId);
+        if (activeLink) {
+            activeLink.classList.add('active');
+        }
+    }
+});
+
+
+    </script>
+    
+    
+</body>
+</html>
