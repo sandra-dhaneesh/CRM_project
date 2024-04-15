@@ -6,3 +6,6 @@ def index(request):
 
 def dashboard(request):
     return render(request,'dashboard.html')
+
+def archive(request):
+    return render(request,'archive.html')
