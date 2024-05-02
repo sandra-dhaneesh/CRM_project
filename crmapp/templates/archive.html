@@ -1,130 +1,199 @@
 {% extends 'sidebar.html' %}
 {% block content %}
-{% load static %}
+<br>
+<br>
 
-<style>
-    .card-body {
-        border-radius: 5px;
-        border-top-left-radius: 50%;
-        border-top-right-radius: 50%;
-    }
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://kit.fontawesome.com/274ee977b7.js" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/jquery@3.7.1/dist/jquery.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js"></script>
+    <title>Document</title>
+    {% load static %}
+    <style>
+     body {
+      background-color: rgb(247, 249, 250);
+  padding: 20px;
+}
 
-    .cardbox {
-        box-shadow: 2px 3px 3px grey;
-        padding: 5px;
-        background-color: white;
-    }
-
-    .cardbox:hover {
-        box-shadow: 2px 8px 20px black;
-        top: -5px;
-    }
-
-    .cardbox a {
-        display: none;
-    }
-
-    .draggable:active {
-        opacity: 0.4;
-        cursor: grabbing;
-    }
-
-    /* Responsive styles */
-    @media screen and (max-width: 768px) {
-        .cardbox {
-            width: calc(50% - 20px); /* Adjust width for smaller screens */
+.card {
+            height: 230px;
+            position: relative;
+            transform-style: preserve-3d;
+            transition: transform 0.8s;
+            border-radius: 10px;
+            padding-bottom: 5px;
         }
-    }
 
-    @media screen and (max-width: 576px) {
-        .cardbox {
-            width: calc(100% - 20px); /* Adjust width for even smaller screens */
-        }
-    }
-</style>
+        html {
+                position: relative;
+                min-height: 100%;
+            }
+        body {
+                margin-bottom: 0px; /* Height of the footer */
+                background-color:lightslategray;
+            }
+    </style>
+    
+    
+  </head>
+  <body>
+      
 
-<div class="content-body">
-    <div class="container-fluid">
-        <div style="margin-top: 30px; text-align:center;">
-            <h1 style="display: block; color: wheat; font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;" class="px-3 pb-4 border-bottom">Archives</h1>
+    <div class="container mt-3 mb-3 p-3">
+      <h3 style="text-align: center; color: wheat;" ><b>Archieve</b></h3>
+      <hr>
+
+        <div class="row">
+            
+                {% if '1' not in item_ids %}
+                <div class="col-sm-3 mt-3">
+                <div id="card{{ '1' }}" class="card">
+                    
+                    <div class="card-body" style="background-color: black;height:200px;" >
+                        <h4 class="card-title text-light">Lemon</h4>
+                        <h5 class="card-subtitle mb-2 text-muted">Cust:Litware</h5>
+        <h6 class="text-light">Date:01/06/23</h6>
+        <h6 class="text-light">Origin:Web</h6>
+                  <br>
+                    <div class="text-center">
+                      <button class="undoButton btn" style="background-color: azure;color:black;" data-item-id="{{ '1' }}">undo</button>
+                    </div>
+                    
+                  </div>
+                    
+                    
+
+                </div>
+                </div>
+                {% endif %}
+
+                {% if '2' not in item_ids %}
+                <div class="col-sm-3 mt-3">
+                <div id="card{{ '2' }}" class="card">
+                    
+                    <div class="card-body" style="background-color:black;height:200px;" >
+                        <h4 class="card-title text-light">Purple</h4>
+                        <h5 class="card-subtitle mb-2 text-muted">Cust:Daniel</h5>
+                        <h6 class="text-light">Date:01/05/23</h6>
+                        <h6 class="text-light">Origin:Email</h6>
+                <br>
+                    <div class="text-center">
+                      <button class="undoButton btn "style="background-color: azure;color:black;" data-item-id="{{ '2' }}">undo</button>
+                    </div>
+                  </div>
+                    
+
+                </div>
+                </div>
+                {% endif %}
+                {% if '3' not in item_ids %}
+                <div class="col-sm-3 mt-3">
+                <div id="card{{ '3' }}" class="card">
+                    
+                    <div class="card-body" style="background-color:black;height:200px;" >
+                        <h4 class="card-title text-light">Altos</h4>
+                        <h5 class="card-subtitle mb-2 text-muted">Cust:Derick</h5>
+                        <h6 class="text-light">Date:30/05/23</h6>
+                        <h6 class="text-light">Origin:Web</h6>
+                <br>
+                    <div class="text-center">
+                      <button class="undoButton btn " style="background-color: azure;color:black;" data-item-id="{{ '3' }}">undo</button>
+                    </div>
+                  </div>
+                    
+
+                </div>
+                </div>
+                {% endif %}
+                {% if '4' not in item_ids %}
+                <div class="col-sm-3 mt-3">
+                <div id="card{{ '4' }}" class="card">
+                    
+                    <div class="card-body" style="background-color:black;height:200px;" >
+                        <h4 class="card-title text-light">ABC</h4>
+                        <h5 class="card-subtitle mb-2 text-muted">Cust:Emma</h5>
+                        <h6 class="text-light">Date:11/04/23</h6>
+                        <h6 class="text-light">Origin:Email</h6>
+                  <br>
+                    <div class="text-center">
+                      <button class="undoButton btn " style="background-color: azure;color:black;" data-item-id="{{ '4' }}" >undo</button>
+                    </div>
+                  </div>
+                    
+
+                </div>
+                </div>
+                {% endif %}
+
+
         </div>
+      </div>
 
-        <div id="archivedCardsContainer" class="justify-content-center py-5" style="display: flex; flex-wrap: wrap; gap: 20px; justify-content: start;">
-            <!-- cards here -->
-        </div>
 
-        <center>
-            <div id="nothing" style="display: none; min-height: 79vh;">
-                <h1 style="color:white; font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;">Nothing Here..</h1>
-            </div>
-        </center>
 
-        <div style="min-height: 20vh;"></div>
-    </div>
-</div>
 
-<script>
-    // Load archived cards from local storage
-    let archivedCards = JSON.parse(localStorage.getItem('archivedCards')) || [];
-    // Get container element
-    let archivedCardsContainer = document.getElementById('archivedCardsContainer');
-    let oopsMsg = document.getElementById('nothing');
+      <script>
 
-    // Function to remove a card from the DOM and update local storage
-    function removeCard(index) {
-        // Remove the corresponding card from the archivedCards array
-        archivedCards.splice(index, 1);
-        // Save the updated archivedCards array to local storage
-        saveToLocalStorage();
-        // Clear the container
-        archivedCardsContainer.innerHTML = '';
-        // Re-display archived cards
-        displayArchivedCards();
-    }
 
-    // Function to display archived cards
-    function displayArchivedCards() {
-        if (archivedCards.length === 0) {
-            oopsMsg.style.display = 'block';
-        } else {
-            oopsMsg.style.display = 'none';
-            archivedCards.forEach(function(cardHTML, index) {
-                // Create a div element to contain each archived card
-                let cardDiv = document.createElement('div');
-                cardDiv.classList.add('card', 'draggable', 'cardbox');
-                cardDiv.style.width = '18rem';
-                cardDiv.innerHTML = cardHTML; // Set inner HTML to the archived card content
 
-                // Create a button element to remove the corresponding card
-                let removeButton = document.createElement('button');
-                removeButton.classList.add('btn', 'btn-warning', 'my-3');
-                removeButton.style.width = '50%';
-                removeButton.style.marginLeft = '25%';
-                removeButton.textContent = 'Unarchive';
-                removeButton.addEventListener('click', function() {
-                    // Call removeCard function with the corresponding index
-                    removeCard(index);
-
-                    // Remove the card from the DOM
-                    cardDiv.remove();
+        document.querySelectorAll('.undoButton').forEach(button => {
+                button.addEventListener('click', function() {
+                    var itemId = this.getAttribute('data-item-id');
+                    console.log(itemId)
+                    var card = document.getElementById('card' + itemId);
+                    card.parentNode.removeChild(card); // Remove the corresponding card from the second page
+                    // Update item_ids array
+        
+                    // Convert item_ids to an array
+                    var itemIdsArray = item_ids.split(',');
+        
+                    // Filter out the item with the specified itemId
+                    var updatedItemIdsArray = itemIdsArray.filter(function(id) {
+                        return id !== itemId;
+                    });
+        
+                    // Convert the filtered array back to a string
+                    item_ids = updatedItemIdsArray.join(',');
+                    console.log(item_ids); // Optional: Log the updated item_ids array
                 });
-
-                // Append the button to the card div
-                cardDiv.appendChild(removeButton);
-
-                // Append the card div to the container
-                archivedCardsContainer.appendChild(cardDiv);
             });
-        }
-    }
+        
+        
+            // Function to retrieve card IDs from the second page and redirect to the first page with updated item_ids
+            function redirectToFirstPage() {
+              var cardIds = [];
+              document.querySelectorAll('.card').forEach(card => {
+                  var cardId = card.id.replace('card', '');
+                  cardIds.push(cardId);
+              });
+              var linkToFirstPage = '{% url "dashboardc" %}?dashboard=' + cardIds.join(',');
+              window.location.href = linkToFirstPage; // Redirect to the first page with card IDs
+          }
+      
+          // Event listener for the link to the first page
+          document.getElementById("linkToFirstPage").addEventListener("click", function(event) {
+              event.preventDefault();
+              redirectToFirstPage();
+          });
+        
+        
+              
+        
+                    
+          </script>
 
-    // Display archived cards initially
-    displayArchivedCards();
 
-    // Function to save archived cards to local storage
-    function saveToLocalStorage() {
-        localStorage.setItem('archivedCards', JSON.stringify(archivedCards));
-    }
-</script>
 
-{% endblock %}
+
+
+
+  
+     
+
+              {% endblock %}

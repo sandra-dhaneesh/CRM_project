@@ -1,180 +1,539 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    {%load static%}
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>CRM</title>
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
-    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.12.9/dist/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
-    <script src="https://kit.fontawesome.com/30ecc6e708.js" crossorigin="anonymous"></script>
-</head>
-<style>
-    .bcolor{
-        background:rgb(255, 255, 255);
-        background: linear-gradient(90deg, rgb(255, 255, 255,1) 40%, rgb(255, 255, 255,1) 100%);
-        
-    }
-    .nv{
-        font-family: Verdana, Geneva, Tahoma, sans-serif;
-    }
-    .nv a{
-        color: black;
-    }
-    .nitem {
+  {% load static %}
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <title>CRM</title>
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css">
+  <script src="https://cdn.jsdelivr.net/npm/jquery@3.6.4/dist/jquery.slim.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="https://kit.fontawesome.com/30ecc6e708.js" crossorigin="anonymous"></script>
+  
+  <style>
+   :root {
+    --font-family-sans-serif: "Open Sans", -apple-system, BlinkMacSystemFont,
+    "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif, "Apple Color Emoji",
+    "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+}
+
+*, *::before, *::after {
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+}
+
+html {
+    font-family: sans-serif;
+    line-height: 1.15;
+    -webkit-text-size-adjust: 100%;
+    -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+}
+
+nav {
+    display: block;
+}
+
+body {
+    margin: 0;
+    font-family: "Open Sans", -apple-system, BlinkMacSystemFont, "Segoe UI",
+    Roboto, "Helvetica Neue", Arial, sans-serif, "Apple Color Emoji",
+    "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+    font-size: 1rem;
+    font-weight: 400;
+    line-height: 1.5;
+    color: #515151;
+    text-align: left;
+    background-color: lightslategray;
+}
+
+h1, h2, h3, h4, h5, h6 {
+    margin-top: 0;
+    margin-bottom: 0.5rem;
+}
+
+p {
+    margin-top: 0;
+    margin-bottom: 1rem;
+}
+
+a {
+    color: #3f84fc;
+    text-decoration: none;
+    background-color: transparent;
+}
+
+a:hover {
+    color: #19c94d;
+    text-decoration: underline;
+}
+
+h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6 {
+    font-family: "Nunito", sans-serif;
+    margin-bottom: 0.5rem;
+    font-weight: 500;
+    line-height: 1.2;
+}
+
+h1, .h1 {
+    font-size: 2.5rem;
+    font-weight: normal;
+}
+
+.card {
     position: relative;
-    
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+    -webkit-flex-direction: column;
+    -ms-flex-direction: column;
+    flex-direction: column;
+    min-width: 0;
+    word-wrap: break-word;
+    background-color: #3a51d4;
+    background-clip: border-box;
+    border: 1px solid rgba(0, 0, 0, 0.125);
+    border-radius: 0;
+}
+
+.card-body {
+    -webkit-box-flex: 1;
+    -webkit-flex: 1 1 auto;
+    -ms-flex: 1 1 auto;
+    flex: 1 1 auto;
+    padding: 1.25rem;
+}
+
+.card-header {
+    padding: 0.75rem 1.25rem;
+    margin-bottom: 0;
+    background-color: rgba(0, 0, 0, 0.03);
+    border-bottom: 1px solid rgba(0, 0, 0, 0.125);
+    text-align: center;
+}
+
+.dashboard {
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -ms-flexbox;
+    display: flex;
+    min-height: 100vh;
+}
+
+.dashboard-app {
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+    -webkit-flex-direction: column;
+    -ms-flex-direction: column;
+    flex-direction: column;
+    -webkit-box-flex: 2;
+    -webkit-flex-grow: 2;
+    -ms-flex-positive: 2;
+    flex-grow: 2;
+    margin-top: 84px;
+}
+
+.dashboard-content {
+    -webkit-box-flex: 2;
+    -webkit-flex-grow: 2;
+    -ms-flex-positive: 2;
+    flex-grow: 2;
+    padding: 25px;
+}
+
+.dashboard-nav {
+    min-width: 234px;
+    position: fixed;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    overflow: auto;
+    background: white;
+    background: linear-gradient(90deg, rgba(255,255,255,1) 40%, rgba(255,255,255,1) 57%, rgba(255,255,255,1) 100%);
+}
+
+.dashboard-compact .dashboard-nav {
+    display: none;
+}
+
+.dashboard-nav header {
+    min-height: 84px;
+    padding: 8px 27px;
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-pack: center;
+    -webkit-justify-content: center;
+    -ms-flex-pack: center;
+    justify-content: center;
+    -webkit-box-align: center;
+    -webkit-align-items: center;
+    -ms-flex-align: center;
+    align-items: center;
+}
+
+.dashboard-nav header .menu-toggle {
+    display: none;
+    margin-right: auto;
+}
+
+.dashboard-nav a {
+    color: black;
+}
+
+.dashboard-nav a:hover {
+    text-decoration: none;
+}
+
+.dashboard-nav {
+    background-color: lightslategray;
+}
+
+.brand-logo {
+    font-family: "Nunito", sans-serif;
+    font-weight: bold;
+    font-size: 20px;
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -ms-flexbox;
+    display: flex;
+    color: #515151;
+    -webkit-box-align: center;
+    -webkit-align-items: center;
+    -ms-flex-align: center;
+    align-items: center;
+}
+
+.brand-logo:focus, .brand-logo:active, .brand-logo:hover {
+    color: #dbdbdb;
+    text-decoration: none;
+}
+
+.brand-logo i {
+    color: #d2d1d1;
+    font-size: 27px;
+    margin-right: 10px;
+}
+
+.dashboard-nav-list {
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+    -webkit-flex-direction: column;
+    -ms-flex-direction: column;
+    flex-direction: column;
+}
+
+.dashboard-nav-item {
+    min-height: 56px;
+    padding: 8px 20px 8px 70px;
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-align: center;
+    -webkit-align-items: center;
+    -ms-flex-align: center;
+    align-items: center;
+    letter-spacing: 0.02em;
+    transition: ease-out 0.5s;
+}
+
+.dashboard-nav-item i {
+    width: 36px;
+    font-size: 19px;
+    margin-left: -40px;
+}
+
+{% comment %} .dashboard-nav-item:hover {
+    background: rgba(245, 241, 241, 0.04);
+} {% endcomment %}
+
+.active {
+    background: rgba(0, 0, 0, 0.1);
+}
+
+.dashboard-nav-dropdown {
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+    -webkit-flex-direction: column;
+    -ms-flex-direction: column;
+    flex-direction: column;
+}
+
+.dashboard-nav-dropdown.show {
+    background: rgba(231, 220, 220, 0.04);
+}
+
+.dashboard-nav-dropdown.show > .dashboard-nav-dropdown-toggle {
+    font-weight: bold;
+}
+
+.dashboard-nav-dropdown.show > .dashboard-nav-dropdown-toggle:after {
+    -webkit-transform: none;
+    -o-transform: none;
+    transform: none;
+}
+
+.dashboard-nav-dropdown.show > .dashboard-nav-dropdown-menu {
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -ms-flexbox;
+    display: flex;
+}
+
+.dashboard-nav-dropdown-toggle:after {
+    content: "";
+    margin-left: auto;
+    display: inline-block;
+    width: 0;
+    height: 0;
+    border-left: 5px solid transparent;
+    border-right: 5px solid transparent;
+    border-top: 5px solid rgba(245, 235, 235, 0.8);
+    -webkit-transform: rotate(90deg);
+    -o-transform: rotate(90deg);
+    transform: rotate(90deg);
+}
+
+.dashboard-nav .dashboard-nav-dropdown-toggle:after {
+    border-top-color: rgba(255, 255, 255, 0.72);
+}
+
+.dashboard-nav-dropdown-menu {
+    display: none;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+    -webkit-flex-direction: column;
+    -ms-flex-direction: column;
+    flex-direction: column;
+}
+
+.dashboard-nav-dropdown-item {
+    min-height: 40px;
+    padding: 8px 20px 8px 70px;
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-align: center;
+    -webkit-align-items: center;
+    -ms-flex-align: center;
+    align-items: center;
+    transition: ease-out 0.5s;
+}
+
+.dashboard-nav-dropdown-item:hover {
+    background: rgba(255, 255, 255, 0.04);
+}
+
+.menu-toggle {
+    position: relative;
+    width: 42px;
+    height: 42px;
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-align: center;
+    -webkit-align-items: center;
+    -ms-flex-align: center;
+    align-items: center;
+    -webkit-box-pack: center;
+    -webkit-justify-content: center;
+    -ms-flex-pack: center;
+    justify-content: center;
+    color: #4e4d4d;
+}
+
+.menu-toggle:hover, .menu-toggle:active, .menu-toggle:focus {
+    text-decoration: none;
+    color: #085308;
+}
+
+.menu-toggle i {
+    font-size: 20px;
+}
+
+.dashboard-toolbar {
+    min-height: 84px;
+    background-color:lightslategray;
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-align: center;
+    -webkit-align-items: center;
+    -ms-flex-align: center;
+    align-items: center;
+    padding: 8px 27px;
+    position: fixed;
+    top: 0;
+    right: 0;
+    left: 0;
+    z-index: 1000;
+}
+
+.nav-item-divider {
+    height: 1px;
+    margin: 1rem 0;
+    overflow: hidden;
+    background-color: rgba(236, 238, 239, 0.3);
+}
+
+@media (min-width: 992px) {
+    .dashboard-app {
+        margin-left: 238px;
     }
-    .nitem::after {
-        content: '';
-        position: absolute;
-        bottom: 0;
-        left: 0;
-        width: 0; 
-        height: 2px;
-        background-color:midnightblue;
-        color: white;
-        transition: width 0.3s ease; 
+
+    .dashboard-compact .dashboard-app {
+        margin-left: 0;
     }
-
-    .nitem:hover::after {
-        width: 75%; 
-        
-    }
-
-    .sidebar {
-    width: 250px; 
-    min-height: 100vh; 
-    position: fixed; 
-    top: 0; 
-    left: 0; 
-    overflow-y: auto; 
 }
 
-.sidebar img {
-    max-width: 100%; 
-}
-
-.nav {
-    padding-top: 20px; 
-}
-
-.nav-link {
-    color: #343a40; 
-}
-
-.nav-link.active {
-    font-weight: bold; 
-    background-color:purple;
-    color: white;
-
-    border-radius: 5px;
-}
-
-.nitem {
-    cursor: pointer; 
-}
 
 @media (max-width: 768px) {
-    #ul{
-        padding-top: 80px;
+    .dashboard-content {
+        padding: 15px 0px;
     }
-    #mainBody{
-        border-top-left-radius: 0px;
-    }
-    
-    }
-
-    @media (min-width: 768px) {
-    
-    #mainBody{
-        border-top-left-radius: 50px;
-    }
-    
-    }
-
-    
-</style>
-<body>
-    <div class="container-fluid" >
-        <div class="row" >
-            <!-- Collapse Button -->
-            <button style="z-index: 101;background-color: transparent;position: fixed;" class="btn d-md-none" type="button" data-toggle="collapse" data-target="#sidebarCollapse" aria-expanded="false" aria-controls="sidebarCollapse">
-                <span class="" style="z-index: 101;"><i class="fa-solid fa-bars"></i></span>
-            </button>
-    
-            <!-- Sidebar Column -->
-            <div class="col-md-2 collapse d-md-block bcolor" id="sidebarCollapse" style="z-index: 100;">
-                <div class="sidebar " >
-                    <ul class="nav flex-column nv bcolor" style="min-height: 100vh;" id="ul">
-                        <li class="nav-item px-3 my-3">
-                            <a style="text-decoration: none;" href="#"><img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTjZXUckqj8bIuTPuIdBNo0h-cEA1LkjqOT5A&s" alt="logo" height="80"></a>   
-                        </li>
-                        <li class="nav-item px-3">
-                            <a class="nav-link nitem " id="link4" href="{% url "dashboard" %}">Dashboard</a>
-                        </li>
-                        <li class="nav-item px-3">
-                            <a class="nav-link nitem " id="link5" href="{% url "archive" %}">Archive</a>
-                        </li>
-                        <li class="nav-item ">
-                            <a class="nav-link nitem ml-md-3" href="#">Software</a>
-                          </li>
-                          <li class="nav-item ">
-                            <a class="nav-link nitem  ml-md-3" href="#">Pricing</a>
-                          </li>
-                          <li class="nav-item ">
-                              <a class="nav-link nitem  ml-md-3" href="#">Resources</a>
-                          </li>
-                          <li class="nav-item ">
-                            <a class="nav-link nitem  ml-md-3" href="#">Contact</a>
-                          </li>
-                    </ul>
-                </div>
-            </div>
-            <!-- Main Content Column -->
-            <div class="col-md-10" style="background-color:lightslategray; width: 100%;" id="mainBody">
-                {% block content %}
-                {% endblock %}
-            </div>
-        </div>
-    </div>
-    
-    <script>
-    // Function to handle click event
-function handleClick(event) {
-    // Remove the 'active' class from all links
-    document.querySelectorAll('.nitem').forEach(link => {
-        link.classList.remove('active');
-    });
-
-    // Add the 'active' class to the clicked link
-    this.classList.add('active');
-
-    // Store the ID of the clicked link in local storage
-    localStorage.setItem('activeLink', this.id);
 }
 
-// Add click event listener to each link
-document.querySelectorAll('.nitem').forEach(link => {
-    link.addEventListener('click', handleClick);
-});
-
-// On page load, check if there's an active link in local storage and apply the active state
-document.addEventListener('DOMContentLoaded', function() {
-    const activeLinkId = localStorage.getItem('activeLink');
-    if (activeLinkId) {
-        const activeLink = document.getElementById(activeLinkId);
-        if (activeLink) {
-            activeLink.classList.add('active');
-        }
+@media (max-width: 992px) {
+    .dashboard-nav {
+        display: none;
+        position: fixed;
+        top: 0;
+        right: 0;
+        left: 0;
+        bottom: 0;
+        z-index: 1070;
     }
+
+    .dashboard-nav.mobile-show {
+        display: block;
+    }
+}
+
+@media (max-width: 992px) {
+    .dashboard-nav header .menu-toggle {
+        display: -webkit-box;
+        display: -webkit-flex;
+        display: -ms-flexbox;
+        display: flex;
+    }
+}
+
+@media (min-width: 992px) {
+    .dashboard-toolbar {
+        left: 238px;
+    }
+
+    .dashboard-compact .dashboard-toolbar {
+        left: 0;
+    }
+}
+.dashboard-nav-item::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 0; 
+    height: 2px;
+    background-color: #343a40;
+    color: white;
+    transition: width 0.3s ease; 
+}
+
+.dashboard-nav-item:hover::after {
+    width: 75%; 
+    
+}
+    
+  </style>
+   
+</head>
+<body>
+  
+
+
+
+<div class='dashboard'>
+    <div class="dashboard-nav">
+        <header><a href="#" class="menu-toggle"><i class="fas fa-bars"></i></a><a href="" class="brand-logo"><img src="{% static 'images/logo.png' %}" alt="logo" height="100"></a></header>
+        <nav class="dashboard-nav-list"><a onclick="redirectToFirstPage()" class="dashboard-nav-item">
+            Dashboard </a>
+        <a onclick="redirectToSecondPage()" class="dashboard-nav-item ">Archive</a>
+        <a href="/" class="dashboard-nav-item"> Apps</a>
+        <a href="" class="dashboard-nav-item"> Community </a>
+        <a href="" class="dashboard-nav-item"> Pricing </a>
+        <a href="" class="dashboard-nav-item"> Contact </a>
+        <div class="nav-item-divider"></div>
+        </nav>
+    </div>
+   
+        <header class='dashboard-toolbar'><a href="#!" class="menu-toggle"><i class="fas fa-bars"></i></a></header>
+        
+       
+    
+   
+
+      
+
+<div class="container-fluid">
+  <div class="row ">
+    <main role="main" class=" ml-sm-auto col-lg-10 ">
+      <script>
+       const mobileScreen = window.matchMedia("(max-width: 990px )");
+$(document).ready(function () {
+    $(".dashboard-nav-dropdown-toggle").click(function () {
+        $(this).closest(".dashboard-nav-dropdown")
+            .toggleClass("show")
+            .find(".dashboard-nav-dropdown")
+            .removeClass("show");
+        $(this).parent()
+            .siblings()
+            .removeClass("show");
+    });
+    $(".menu-toggle").click(function () {
+        if (mobileScreen.matches) {
+            $(".dashboard-nav").toggleClass("mobile-show");
+        } else {
+            $(".dashboard").toggleClass("dashboard-compact");
+        }
+    });
 });
+      function confirm_logout() {
+            return confirm("Are you sure you want to logout?");
+        }
+       </script>
+      
+       
+          
+          {% block content %}
+          {% endblock %}
+     
 
 
-    </script>
-    
-    
+<!-- Your page content goes here -->
+
+  
+
+
 </body>
 </html>

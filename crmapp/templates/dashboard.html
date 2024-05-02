@@ -1,354 +1,222 @@
-{% extends "sidebar.html" %}
+
+{% extends 'sidebar.html' %}
 {% block content %}
-{% load static %}
-<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-<script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
-<script type="text/javascript">
-  google.charts.load('current', {'packages':['bar']});
-  google.charts.setOnLoadCallback(drawChart);
 
-  function drawChart() {
-    var data = google.visualization.arrayToDataTable([
-      ['Year', 'Sales', 'Expenses', 'Profit'],
-      ['2019', 1000, 700, 300],
-      ['2020', 1170, 460, 250],
-      ['2021', 660, 1120, -300],
-      ['2022', 1030, 540, 350]
-    ]);
-    var options = {
-      chart: {
-        title: 'Company Performance',
-        subtitle: 'Sales, Expenses, and Profit: 2014-2017'
-      }
-    };
-
-    var chart = new google.charts.Bar(document.getElementById('columnchart_material'));
-
-    chart.draw(data, google.charts.Bar.convertOptions(options));
-  }
-</script>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://kit.fontawesome.com/274ee977b7.js" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/jquery@3.7.1/dist/jquery.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <title>Document</title>
+    {% load static %}
+  
+    <br>
     <style>
-        body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            
-            background-color: lightslategray;
+        .chart {
+  width: 100%; 
+  min-height: 450px;
+}
+.row {
+  margin:0 !important;
+}
+          body {
+      background-color:lightslategray;
+  padding: 20px;
+  margin: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.card {
+        height: 100%;
+        width: 100%;
+    }
+.cardf {
+            margin: auto; /* Center horizontally */
+            margin-top: 50px; /* Adjust as needed */
+            max-width: 500px; /* Adjust as needed */
+            padding: 30px;
+        } 
+        .draggable-card {
+            cursor: move;
         }
-        .mainc {
-            display: grid;
-            gap: 20px;
-            padding: 20px;
-            margin-top: 20px;
-        }
-
-        .card {
-            background-color: #fff;
-            border-radius: 10px;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-            padding: 20px;
-        }
-
-        .card h2 {
-            font-size: 1.5rem;
-            margin-bottom: 10px;
-        }
-
-
-        @media only screen and (min-width: 768px) {
-            .mainc {
-                grid-template-columns: repeat(2, 1fr);
+        /* Additional styles for mobile view */
+        @media (max-width: 576px) {
+            .draggable-card {
+                cursor: grab;
             }
         }
-        .dashboard {
-            display: grid;
-            grid-template-columns: 1.5fr 2fr 1fr;
-            gap: 20px;
-            padding: 20px;
-          }
-          .dashboard > div {
-            border: 1px solid #ccc;
-            padding: 10px;
-          }
-          [role="progressbar"] {
 
-            --percentage: var(--value);
-            --primary: rgba(75, 192, 192);
-            --secondary: #c6f5f1;
-            --size: 100px;
-            animation: progress 2s 0.5s forwards;
-            width: 65%; 
-            aspect-ratio: 2 / 1;
-            border-radius: 50% / 100% 100% 0 0;
+@media (max-width: 900px) {
+    .cardf{
+         margin: auto; /* Center horizontally */
+        margin-top: 50px; /* Adjust as needed */
+            max-width: 300px;
+            padding: 30px;
+}
+}
+
+
+        .crd {
+            height: 200px;
             position: relative;
-            overflow: hidden;
-            display: flex;
-            align-items: flex-end;
-            justify-content: center;
-            margin-left: 50px;
-          }
-          
-          [role="progressbar"]::before {
-            content: "";
-            position: absolute;
-            top: 0;
-            left: 0;
+            transform-style: preserve-3d;
+            transition: transform 0.8s;
+           
+        }
+
+
+       
+
+        .crd .side {
             width: 100%;
             height: 100%;
-            background: conic-gradient(from 0.75turn at 50% 100%, var(--primary) calc(var(--percentage) * 1% / 2), var(--secondary) calc(var(--percentage) * 1% / 2 + 0.1%));
-            mask: radial-gradient(at 50% 100%, white 55%, transparent 55.5%);
-            mask-mode: alpha;
-            -webkit-mask: radial-gradient(at 50% 100%, #0000 55%, #000 55.5%);
-            -webkit-mask-mode: alpha;
-          }
-          
-          [role="progressbar"]::after {
-            counter-reset: percentage var(--value);
-            content: counter(percentage) '%';
-            font-family: Helvetica, Arial, sans-serif;
-            font-size: calc(var(--size) / 5);
-            color: var(--primary);
-          }
-          .acard {
-            display: grid;
-            grid-template-columns: 1fr 1fr 1fr;
-            gap: 20px;
-            padding: 20px;
-          }
-          .acard > div {
-            border: 1px solid #ccc;
-            padding: 10px;
-          }
-          .first1 {
-            display: grid;
-            grid-template-columns: 1fr 1fr 1fr;
-            gap: 20px;
-            padding: 20px;
-          }
-          .first1 > div {
-            border: 1px solid #ccc;
-            padding: 10px;
-          }
-          .market-update-right i.fa.fa-users {
-            font-size: 2.5em;
-            color: #343A40;
-            background: #fff;
+            backface-visibility: hidden;
+            position: absolute;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .crd .front {
+            transform: rotateY(0deg); /* Ensure the front side is visible initially */
+            display: flex;
+        }
+
+        .selected {
+            border: 2px solid blue;
+        }
+
+        .popup {
+          display: none;
+          position: fixed;
+          top: 75%;
+          left: 50%;
+          transform: translate(-50%, -50%);
+          background-color: #f9f5f5;
+          padding: 20px;
+          border-radius: 5px;
+          box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+          z-index: 9999;
+        }
+
+        .popup-content {
             text-align: center;
-            border-radius: 49px;
-            -webkit-border-radius: 49px;
-            -moz-border-radius: 49px;
-            -o-border-radius: 49px;
-            line-height: 1.7em;
-          }
-          .market-update-right i.fa.fa-bar-chart {
-            font-size: 2.5em;
-            color: #343A40;
-            background: #fff;
-            text-align: center;
-            border-radius: 49px;
-            -webkit-border-radius: 49px;
-            -moz-border-radius: 49px;
-            -o-border-radius: 49px;
-            line-height: 1.7em;
-          }
-          .market-update-right i.fa.fa-money-bill-trend-up {
-            font-size: 3em;
-            color: #343A40;
-            background: #fff;
-            text-align: center;
-            border-radius: 49px;
-            -webkit-border-radius: 49px;
-            -moz-border-radius: 49px;
-            -o-border-radius: 49px;
-            line-height: 1.7em;
-          }
-          #archiveBox{
-            /* width: 100px;
-            height: 100px; */
-            transition: all 0.7s ease;
-            
         }
-        /* #archiveBox.dragover{
-            height: 150px;
-            width: 150px;       
-            
-        } */
-        #archiveBox.drop{
-            height: 0px;
-            width: 0px;
-            transition: all 0.7s ease;
-        }
-        @media (min-width: 768px) {
-            #archiveIcon { 
-            position: relative;   
-            justify-self: center;
-            align-self: center;
-            padding: 5% 4%;
-            border-radius: 50%;
-            border: 2px solid rgba(255, 68, 0, 0.6);
-            background-color: rgba(255, 68, 0, 0.2);
-            transition: top 0.7s ease; 
-            
-        }
-        }
-    
-        @media (max-width: 768px) {
-            #archiveIcon{
-                position: relative;   
-                justify-self: center;
-                align-self: center;
-                padding: 50px 40px;
-                border-radius: 50%;
-                border: 2px solid rgba(255, 68, 0, 0.6);
-                background-color: rgba(255, 68, 0, 0.2);
-                transition: top 0.7s ease; 
-            }
-        }
-        #archiveIcon{
-            position: relative;   
-            justify-self: center;
-            align-self: center;
-            padding: 50px 40px;
-            border-radius: 50%;
-            border: 2px solid rgba(255, 68, 0, 0.6);
-            background-color: rgba(255, 68, 0, 0.2);
-            transition: top 0.7s ease; 
-        }
-        
-    
-    
-        #archiveBox.dragover #archiveIcon {
-        font-size: 2em; 
-        /* padding: 50% 35%; */
-        transition: font-size 0.7s ease; 
-        }
-        #archiveDiv{
-            display: none;               
-            transition: opacity 0.7s ease;
-        }
-        .cardbox{
-            /* border-radius: 15px; */
-            box-shadow: 2px 3px 3px grey;
-            padding: 5px;
-            /* background-color: rgba(20, 188, 168, 0.2); */
-        }
-        
-        .cardbox:hover{
-            box-shadow: 2px 8px 20px black;
-            top: -5px;
-        }
-        .cardbox a {
-            text-decoration: none;
-            color: black;
-            text-shadow: 1px 1px black;
-            background-color: transparent;
-        }
-        .cardbox a:hover{
-            
-            text-transform: uppercase;
-            font-weight: 500;
-            color: black;
-            
-        }
-        .pie-chart {
-  position: relative;
-  list-style: none;
-	max-width: 500px;
-	margin: 0;
-  padding: 0;
-	background:
-		radial-gradient(
-			circle closest-side,
-			transparent 100%,
-			white 0
-		),
-		conic-gradient(
-			#4e79a7 0,
-			#4e79a7 19.3%,
-			#f28e2c 0,
-			#f28e2c 31%,
-			#e15759 0,
-			#e15759 39.1%,
-			#76b7b2 0,
-			#76b7b2 44.2%,
-			#59a14f 0,
-			#59a14f 47.2%,
-			#edc949 0,
-			#edc949 50.8%,
-			#af7aa1 0,
-			#af7aa1 72.6%,
-			#ff9da7 0,
-			#ff9da7 100%
-	);
-  animation-name: rotate;
-  animation-duration: 2s;
-  animation-fill-mode: forwards;
-  animation-timing-function: ease;
+
+       
+      .table thead th,
+.table tbody td {
+  text-align: center; /* Adjust alignment as needed */
+}
+.table thead th {
+  background-color: #090909; /* Blue color, change as needed */
+  color: #fff; /* Text color, change as needed */
 }
 
-@keyframes rotate {
-  from {
-    transform: rotate(0);
+/* For table body alternating rows */
+.table-striped tbody tr:nth-of-type(odd) {
+  background-color: #ffffff; /* Light gray color, change as needed */
+}
+
+/* For table body text color */
+.table tbody td {
+  color: #333; /* Dark text color, change as needed */
+}
+.crd {
+      margin-bottom: 20px;
+    }
+
+
+    @media (min-width: 768px) {
+      .card-columns {
+        -webkit-column-count: 3;
+        -moz-column-count: 3;
+        column-count: 3;
+      }
+    }
+    .card-img-top {
+      width: 100%;
+      height: auto;
+    }
+    .crd {
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    transition: box-shadow 0.3s ease;
   }
-  to {
-    transform: rotate(240deg);
+  .crd:hover {
+        transform: scale(1.15);
+    }
+  {% comment %} .card-body {
+    padding: 20px;
+  } {% endcomment %}
+  .card-title {
+    font-size: 1.5rem;
+    font-weight: bold;
+    margin-bottom: 10px;
   }
-}
+  .card-text {
+    font-size: 1.2rem;
+    color: #555;
+  }
 
-.pie-chart:after {
-  content: "";
-  display: block;
-  padding-bottom: 100%;
-}
+  
+  @media screen and (max-width: 280px) {
+    /* Adjust the font size, padding, margins, and other properties as needed */ 
+/* Adjustments for smaller screens like Galaxy Fold */
 
-.pie-chart li {
-  position: absolute;
-  top: calc(50% - 0.5rem);
-  left: 50%;
-  padding-left: 10%;
-  width: 37%;
-  text-align: right;
-  transform-origin: 0;
-  font-family: Arial;
-  font-weight: bold;
-  font-size: 100%;
-  color: #ffffff;
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
-}
+ 
+    
+    .container-fluid {
+        padding: 10px; /* Adjust padding as needed */
+    }
+  }
 
-.pie-chart li:nth-child(1) {
-  transform: rotate(calc(-90deg + 1.8deg * 19.3));
+  @media (min-width: 1024px) {
+    
+    .h-screen {
+        margin-left: 40px; /* Same as sidebar width */
+    }
 }
-
-.pie-chart li:nth-child(2) {
-  transform: rotate(calc(-90deg + 1.8deg * (19.3 + 31)));
-}
-
-.pie-chart li:nth-child(3) {
-  transform: rotate(calc(-90deg + 1.8deg * (31 + 39.1)));
-}
-
-.pie-chart li:nth-child(4) {
-  transform: rotate(calc(-90deg + 1.8deg * (39.1 + 44.2)));
-}
-
-.pie-chart li:nth-child(5) {
-  transform: rotate(calc(-90deg + 1.8deg * (44.2 + 47.2)));
-}
-
-.pie-chart li:nth-child(6) {
-  transform: rotate(calc(-90deg + 1.8deg * (47.2 + 50.8)));
-}
-
-.pie-chart li:nth-child(7) {
-  transform: rotate(calc(-90deg + 1.8deg * (50.8 + 72.6)));
-}
-
-.pie-chart li:nth-child(8) {
-  transform: rotate(calc(-90deg + 1.8deg * (72.6 + 100)));
-}
-
-@keyframes progress {
+.market-update-right i.fa.fa-users {
+    font-size: 2.5em;
+    color: #343A40;
+    background: #fff;
+    text-align: center;
+    border-radius: 49px;
+    -webkit-border-radius: 49px;
+    -moz-border-radius: 49px;
+    -o-border-radius: 49px;
+    line-height: 1.7em;
+  }
+  .market-update-right i.fa.fa-bar-chart {
+    font-size: 2.5em;
+    color: #343A40;
+    background: #fff;
+    text-align: center;
+    border-radius: 49px;
+    -webkit-border-radius: 49px;
+    -moz-border-radius: 49px;
+    -o-border-radius: 49px;
+    line-height: 1.7em;
+  }
+  .market-update-right i.fa.fa-money-bill-trend-up {
+    font-size: 3em;
+    color: #343A40;
+    background: #fff;
+    text-align: center;
+    border-radius: 49px;
+    -webkit-border-radius: 49px;
+    -moz-border-radius: 49px;
+    -o-border-radius: 49px;
+    line-height: 1.7em;
+  }
+  @keyframes progress {
   0% { --percentage: 0; }
   100% { --percentage: var(--value); }
 }
@@ -396,506 +264,958 @@
   color: var(--primary);
 }
 
-/* demo */
-body {
-  margin: 0;
-  display: grid;
-  place-items: center;
-  height: 100vh;
-  background: #f0f8ff;
+
+
+
+/***/
+
+
+
+  h2 {
+    font-size: 1.5rem;
+    margin-bottom: 10px;
+}
+.cardf {
+    background-color: #fff;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    padding: 20px;
 }
 
-.table{
-    color: #616161;
+
+
+
+svg {
+  margin: 0 auto;
+  text-align: center;
+  width: 100%;
+  padding-top: 40px;
+}
+
+polyline {
+  stroke-dasharray: 1000;
+  stroke-dashoffset: 1000;
+  animation: dash 5s ease-in forwards;
+  animation-iteration-count: 10;
+  animation-direction: alternate;
+}
+
+@keyframes dash{
+  to {
+    stroke-dashoffset: 0;
+  }
 }
 
 
+p {
+  font-size: 2rem;
+  text-align:center;
+  color: #efefef;
+}
+.name {
+  font-size: .8rem;
+  font-weight: light;
+}
 
-
-
-
-
-
-
-
-
-    </style>
+.svg-container-svg {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    padding-bottom: calc(286/529 * 100%); /* Aspect ratio: 529:286 */
+    background-color: rgba(0, 0, 0, 0.7);
+  }
+  .svg-container-svg svg {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
     
-<body>
-    <br>
-   <h1 style="text-align:center; color: wheat; font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;">DASHBOARD</h1> 
-    <br><br><br>
-    <center>
-    <section class="card col-md-8">
-            <div class="row d-flex justify-content-center" style="height: 20vh; width: 80vh;">
-                <img src="data:image/jpeg;base64,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" class="p-2" width="200" height="200" style="border-radius: 50px;bottom: 50px;position:relative;background-color: black;">
-                <h2>William David</h2>
-            </div>
-            <div class="row">
-                <div class="col"><center><span style="font-weight: 500;">3.7K</span> <br> <p style="color: gray;">Product</p></center></div>
-                <div class="col"><center><span style="font-weight: 500;">11.5K</span> <br> <p style="color: gray;">Followers</p></center></div>
-            </div><br>
-            <div class="row">
-                <div role="progressbar" aria-valuenow="67" aria-valuemin="0" aria-valuemax="100" style="--value: 67"></div>
+  }
 
-        
-                
-                
-            </div>
-        </section>
-      </center>
-        <br><br><br>
-    <div class="row" >
-        <section class="card col-md-3 ml-5" style="background-color: purple;">
-            <div class="row">
-                <div class="col-md-8" >
-                    <h4 style="color: white; font-family: cursive;">Total Profit <br>$95,595</h4>
-                </div>
-                <div class="market-update-right">
-                    <i class="fa fa-money-bill-trend-up"></i>
-                </div>
-            </div>
-        </section>
-        <section class="card col-md-3 ml-5" style="background-color: purple;">
-            <div class="row">
-                <div class="col-md-8">
-                    <h4 style="color: white; font-family: cursive;">Total Expenses <br>$12,789</h4>
-                </div>
-                <div class="market-update-right">
-                    <i class="fa fa-bar-chart"></i>
-                </div>
-            </div>
-        </section>
-        <section class="card col-md-3 ml-5" style="background-color: purple;">
-            <div class="row">
-                <div class="col-md-8">
-                    <h4 style="color: white; font-family: cursive;">New Users <br>13,984</h4>
-                </div>
-                <div class="market-update-right">
-                    <i class="fa fa-users"></i>
-                </div>
-            </div>
-        </section>
-    </div>
-    {% comment %} <div class="first1">
-        <section class="card">
-            <div class="row">
-                <div class="col-md-8">
-                    <h4>Total Profit <br>$95,595</h4>
-                </div>
-                <div class="market-update-right">
-                    <i class="fa fa-money-bill-trend-up"></i>
-                </div>
-            </div>
-        </section>
-        <section class="card">
-            <div class="row">
-                <div class="col-md-8">
-                    <h4>Total Expenses <br>$12,789</h4>
-                </div>
-                <div class="market-update-right">
-                    <i class="fa fa-bar-chart"></i>
-                </div>
-            </div>
-        </section>
-        <section class="card">
-            <div class="row">
-                <div class="col-md-8">
-                    <h4>New Users <br>13,984</h4>
-                </div>
-                <div class="market-update-right">
-                    <i class="fa fa-users"></i>
-                </div>
-            </div>
-        </section>
-    </div> {% endcomment %}
-    <main class="container-fluid mainc">
-    <div class="row">
-        <div class="col-md-12" style="background-color: white;">
-            <script src="https://cdn.amcharts.com/lib/4/core.js"></script>
-<script src="https://cdn.amcharts.com/lib/4/charts.js"></script>
-<div id="chartdiv" style="height: 500px; width: 500px;"></div>
-        </div>
-    </div>
-    <div class="row">
-        <div class="col-md-6">
-            <div id="columnchart_material" style="width:700px; height: 500px;"></div>
-        </div>
-    </div>
-  
-</main>
-<br><br>
-    <div class="row">
-        <section id="user-activity" class="card col-md-5 ml-md-5 mr-md-2">
-    <h2 style="text-align:center">User Activity</h2>
-    <canvas id="userActivityChart" width="300" height="100"></canvas>
-     
-    <ul class="pie-chart">
-        <li>Lorem, ipsum.</li>
-        <li>Amet, velit!</li>
-        <li>Tempora, asdf accusantium?</li>
-        <li>Dolores, enim.</li>
-        <li>Sint, alias.</li>
-        <li>Quo, est.</li>
-        <li>Nesciunt, asperiores!</li>
-        <li>Odio, labore.</li>
-    </ul>
-</section>
 
-        <section class="card col-md-5 ml-5 mr-2">
-            <h2 style="text-align:center">Products</h2>
-            <div class="container table-responsive">
-                <table class="table">
-                    <tr style="background-color: #f6f6f6;">
-                        <td>1</td>
-                        <td >Watch <br> Men</td>
-                        <td >$ 300</td>
-                    </tr>
-                    <tr style="background-color: #e0e0e0;">
-                        <td>2</td>
-                        <td>Shoes <br>Women</td>
-                        <td>$ 120</td>
-                    </tr>
-                    <tr style="background-color: #f6f6f6;">
-                        <td>3</td>
-                        <td>Hoodie <br>Unisex</td>
-                        <td>$ 25</td>
-                    </tr>
-                    <tr style="background-color: #e0e0e0;">
-                        <td>4</td>
-                        <td>Glass <br>Men</td>
-                        <td>$ 45</td>
-                    </tr>
-                </table>
-            </div>
-        </section>
+  @import url("https://s3-us-west-2.amazonaws.com/s.cdpn.io/584938/library.less");
+        @import url("https://s3-us-west-2.amazonaws.com/s.cdpn.io/584938/variables.less");
+        @body: #252830;
 
-    </div><br><br><br><br>
-    <!-- archive box -->
-    {% comment %} archive box  {% endcomment %}
-    <div class="row mt-5" id="archivediv"  >
-        <div id="archivebox" class="col d-flex justify-content-center" >
-            <i id="archiveIcon" class="fa-solid fa-box-archive fa-fade fa-xl " style="color: red; background-color: white;"></i>
-        </div>
-    </div><br><br>
-{% comment %} archive cards {% endcomment %}
-    <div class=" col-md justify-content-center  py-5" style="display: flex;flex-wrap: wrap;justify-content: start;">
 
-        <div class="mx-md-3" style"gap:20px;">
-            <div class="card draggable cardbox mt-4" draggable="true">       
-                <div class="card-body" style="margin-top: 20px;background-color:purple; border-radius:10px;gap:20px" >
-                <h4 class="card-title text-light">$ 0.00</h4>
-                <h5 class="card-subtitle mb-2" style="color: yellow;">Free Trial</h5>
-                <h6 style="color: wheat;">No Extra Benefits</h6>
-                <h6 style="color: wheat;">Valid for 7 Days</h6>
-                </div>
-                <center> <a href="#" class="btn p-3 w-100 " style="color: darkblue;" >Purchase</a> </center>
-            </div>
-        </div>
 
-        <div class="mx-md-3" style"gap:20px;">
-            <div class="card draggable cardbox mt-4" draggable="true">       
-                <div class="card-body" style="margin-top: 20px;background-color:purple;border-radius:10px;gap:20px" >
-                    <h4 class="card-title text-light">$ 49.70</h4>
-                    <h5 class="card-subtitle mb-2 " style="color: yellow;">Standard</h5>
-                    <h6 style="color: wheat;">No Extra Benefits</h6>
-                    <h6 style="color: wheat;">Valid for 1 Month</h6>
-                </div>
-                <center> <a href="#" class="btn p-3 w-100 " style="color: darkblue;">Purchase</a> </center>
-            </div>
-        </div>
+        .quick-stats {
+            font-weight: 300;
+            margin: 15px auto; /* Center align */
+            position: relative;
+            text-align: center;
+            text-transform: uppercase;
 
-        <div class="mx-md-3" style"gap:20px;">
-            <div class="card draggable cardbox mt-4" draggable="true">       
-                <div class="card-body" style="margin-top: 20px;background-color: purple;border-radius:10px;gap:20px" >
-                    <h4 class="card-title text-light">$ 70.64</h4>
-                    <h5 class="card-subtitle mb-2" style="color: yellow;">Premium</h5>
-                    <h6 style="color: wheat;">No Extra Benefits</h6>
-                    <h6 style="color: wheat;">Valid for 3 Months</h6>
-                </div>
-                <center> <a href="#" class="btn p-3 w-100 " style="color: darkblue;" >Purchase</a> </center>
-            </div>
-        </div>
+            span {
+                background-color: white;
+                letter-spacing: 2px;
+                padding: 0 10px;
+                position: relative;
+                z-index: 1;
+            }
 
-        <div class="mx-md-3" style"gap:20px;">
-            <div class="card draggable cardbox mt-4" draggable="true">       
-                <div class="card-body" style="margin-top: 20px;background-color:purple;border-radius:10px;gap:20px" >
-                    <h4 class="card-title text-light">$ 92.05</h4>
-                    <h5 class="card-subtitle mb-2" style="color: yellow;">Premium</h5>
-                    <h6 style="color: wheat;">No Extra Benefits</h6>
-                    <h6 style="color: wheat;">Valid for 5 Months</h6>
-                </div>
-                <center> <a href="#" class="btn p-3 w-100 " style="color: darkblue;" >Purchase</a> </center>
-            </div>
-        </div>
-    </div>
-        
-
-    {% comment %} <div class="row" style="justify-content: start;">
-        <div class="card cardbox draggable col-md-3 ml-5 mr-2" draggable="true">
-            <div class="card-body" style="background-color: #e69191;border-radius:10px;gap:20px">
-                <h4 class="card-title">$ 0.00 <br>Free Trial</h4>
-                <h6>No Extra Benefits</h6>
-                <h6>Valid for 7 Days</h6>
-                <a href="#" class="card-link" style="color:green;">Purchase</a>
-            </div>
-        </div>
-        <div class="card draggable cardbox col-md-3 ml-5 mr-2" draggable="true">
-            <div class="card-body" style="background-color: #91e6a3;border-radius:10px;">
-                <h4 class="card-title">$ 49.70</h4>
-                <h5 class="card-subtitle mb-2 text-muted">Standard</h5>
-                <h6>No Extra Benefits</h6>
-                <h6>Valid for 1 Month</h6>
-                <a href="#" class="card-link" style="color:green;">Purchase</a>
-            </div>
-        </div>
-        <div class="card draggable cardbox col-md-3 ml-5 mr-2" draggable="true">
-            <div class="card-body" style="background-color: #f5d0d0;border-radius:10px;">
-                <h4 class="card-title">$ 70.64</h4>
-                <h5 class="card-subtitle mb-2 text-muted">Premium</h5>
-                <h6>No Extra Benefits</h6>
-                <h6>Valid for 3 Months</h6>
-                <a href="#" class="card-link" style="color:green;">Purchase</a>
-            </div>
-        </div>
-    </div> {% endcomment %}<br><br>
-
-    <script>
-        let cards = document.getElementsByClassName('cardbox');
-        let archivebox = document.getElementById('archivebox');
-        let archivediv = document.getElementById('archivediv');
-    
-        // Load archived cards from local storage
-        let archivedCards = JSON.parse(localStorage.getItem('archivedCards')) || [];
-    
-        // Function to save archived cards to local storage
-        function saveToLocalStorage() {
-            localStorage.setItem('archivedCards', JSON.stringify(archivedCards));
-        }
-    
-        // Function to handle dropping a card into the archive box
-        function handleDrop(selectedCard) {
-            selectedCard.style.display = 'none';
-            archivediv.style.display = 'none';
-            archivedCards.push(selectedCard.innerHTML); // Save card HTML content
-            saveToLocalStorage(); // Save to local storage
-            // Add 'selected' class to archive icon
-            archiveIcon.classList.add('selected');
-            
-        }
-
-    
-        for (let card of cards) {
-        // Add dragstart event listener for desktop view
-        card.addEventListener("dragstart", function(e) {
-            archivediv.style.display = 'block'; // Display the archivediv
-            archivediv.style.opacity = '1';
-            let selected = e.target;
-    
-            archivebox.addEventListener("dragover", function(e) {
-                e.preventDefault();
-            });
-    
-            card.addEventListener("dragend", function(e) {
-                archivediv.style.display = 'none';
-                selected = null;
-                // Remove 'selected' class from archive icon
-                archiveIcon.classList.remove('selected');
-            });
-            
-    
-            archivebox.addEventListener("drop", function(e) {
-                e.preventDefault();
-                handleDrop(selected);
-            });
-        });
-    
-        // Add touchstart event listener
-        card.addEventListener("touchstart", function(e) {
-            // Prevent default touch behavior to avoid issues with touch events
-            e.preventDefault();
-            archivediv.style.display = 'block'; // Display the archivediv
-            archivediv.style.opacity = '1';
-            // Get the touch target
-            let touch = e.touches[0];
-            
-            // Store initial touch coordinates
-            card.setAttribute('data-touchstart-x', touch.clientX);
-            card.setAttribute('data-touchstart-y', touch.clientY);
-        });
-    
-        // Add touchmove event listener
-        card.addEventListener("touchmove", function(e) {
-            // Prevent default touch behavior to avoid issues with touch events
-            e.preventDefault();
-            
-            // Get the touch target
-            let touch = e.touches[0];
-            
-            // Calculate distance moved
-            let deltaX = touch.clientX - parseInt(card.getAttribute('data-touchstart-x'));
-            let deltaY = touch.clientY - parseInt(card.getAttribute('data-touchstart-y'));
-            
-            // Apply translation to the card's position
-            card.style.transform = `translate(${deltaX}px, ${deltaY}px)`;
-        });
-    
-        card.addEventListener("touchend", function(e) {
-        // Reset card position after touchend
-        card.style.transform = 'translate(0px, 0px)';
-        setTimeout(function() {
-            archivediv.style.display = 'none';
-        }, 200); // Hide the archivediv after touchend
-        
-        // Get the touch position relative to the viewport
-        var touchX = e.changedTouches[0].clientX;
-        var touchY = e.changedTouches[0].clientY;
-        console.log("Touch position: X:", touchX, "Y:", touchY);
-        
-        // Check if the touch ended within the boundaries of the archivediv
-        var elementUnderTouch = document.elementFromPoint(touchX, touchY);
-        console.log("Element under touch:", elementUnderTouch);
-        if (elementUnderTouch.id === "archiveIcon") {
-            handleDrop(card);
-        }
-    });
-        
-    }
-    
-    
-        function hideArchivedCards() {
-        // Load archived cards from local storage
-        let archivedCards = JSON.parse(localStorage.getItem('archivedCards')) || [];
-        
-        // Iterate through each card
-        for (let card of cards) {
-            // Check if the card's inner HTML content is in the archived cards
-            if (archivedCards.includes(card.innerHTML)) {
-                card.style.display = 'none'; // Hide the card if it's archived
+            &:after {
+                background-color: @body;
+                content: "";
+                height: 1px;
+                left: 0;
+                position: absolute;
+                top: 50%;
+                width: 100%;
             }
         }
-    }
+
+        .chart {
+            color: white;
+            text-align: left;
+
+            canvas {
+                margin-top: 5px;
+            }
+
+            @media (max-width: 768px) {
+                + .chart {
+                    margin-top: 15px;
+                }
+            }
+        }
+
+        .chart-inner {
+            #mdShadows > .depth-2;
+            transition: all .15s linear;
+            border-radius: 3px;
+
+            &:hover {
+                #mdShadows > .depth-3;
+            }
+        }
+
+        .header {
+            .box-sizing;
+            padding: 30px 15px;
+            position: relative;
+
+            &:after {
+                background-color: white;
+                bottom: 0;
+                content: "";
+                position: absolute;
+                height: 1px;
+                left: 0;
+                width: 100%;
+            }
+        }
+
+        .tagline {
+            opacity: 0.75;
+            text-transform: uppercase;
+        }
+
+        .count {
+            display: inline-block;
+            font-size: 32px;
+            vertical-align: middle;
+        }
+
+        .velocity {
+            display: inline-block;
+            font-size: 12px;
+            margin-left: 15px;
+            vertical-align: middle;
+            i {
+                font-size: 10px;
+            }
+        }
+
+        .stat-1 {
+            background-color: #3EC1D3;
+        }
+        .stat-2 {
+            background-color: #FF9A00;
+        }
+        .stat-3 {
+            background-color: #FF165D;
+        }
+
+        /* Material Design Shadows */
+        #mdShadows {
+            .depth-1(@color: black) {
+                box-shadow: 0 1px 3px fade(@color, 12%),
+                            0 1px 2px fade(@color, 24%);
+            }
+            .depth-2(@color: black) {
+                box-shadow: 0 3px 6px fade(@color, 16%),
+                            0 3px 6px fade(@color, 23%);
+            }
+            .depth-3(@color: black) {
+                box-shadow: 0 10px 20px fade(@color, 19%),
+                            0 6px 6px fade(@color, 23%);
+            }
+            .depth-4(@color: black) {
+                box-shadow: 0 14px 28px fade(@color, 25%),
+                            0 10px 10px fade(@color, 22%);
+            }
+            .depth-5(@color: black) {
+                box-shadow: 0 19px 38px fade(@color, 30%),
+                            0 15px 12px fade(@color, 22%);
+            }
+        }
+
+
+
+</style>
+</head>
+
+<body>
+    <br>
+
+    <header class="bg-surface-primary border-bottom">
+     
+            <div class="mb-npx">
+                <div class="row align-items-center">
+                    <div class="col-sm-6 col-12 mb-4 mb-sm-0">
+                        <!-- Title -->
+                        <br>
+                        <br>
+                        <center> <h1 class="h2 mb-0 ls-tight ml-5" style="color: wheat;"><b>Dashboard</b></h1></center>
+                        
+                    </div>
+            </div>
+        </div>
+    </header><br><br><br>
     
-    // Call the function to hide archived cards when the page loads
-    window.addEventListener('load', hideArchivedCards);
     
-       let archiveIcon = document.getElementById('archiveIcon');
+    <div class="container" style="height: auto; ">
+        <section class="card cardf col-md-3" style="margin: auto ; height: auto; width: auto; background-color: black;" >
+            <div class="row d-flex justify-content-center" style="height: auto; width: auto;">
+                <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRzzYYW3Adts78xFrBXjXH63izW_9iGZBfVtw&s" class="p-2" width="80" height="80" style="border-radius: 50px;bottom: 50px;position:relative;background-color: black;">
+                <h5 style="color: wheat;">William David</h5>
+            </div>
+            <div class="row">
+                <div class="col text-light"><center><span style="font-weight: 500;">3.7K</span> <br> <p style="color: white;">Product</p></center></div>
+                <div class="col text-light"><center><span style="font-weight: 500;">11.5K</span> <br> <p style="color: white;">Followers</p></center></div>
+            </div>
+            <div class="row">
+                <div role="progressbar" aria-valuenow="67" aria-valuemin="0" aria-valuemax="100" style="--value: 67"></div>
+            </div>
+            <div class="row pb-3" style="display: flex;justify-content: center;">
+                <div style="width: 100%;display: flex;justify-content: center;"><h5 style="color: white;">$ 35,000</h5></div>
+                <div style="width: 100%;display: flex;justify-content: center;"><h6 style="color: gray;">Earning this month.</h6></div>
+            </div>
+        </section>
+    </div>
     
-        archivebox.addEventListener('dragover', function(event) {
-            event.preventDefault(); // Prevent default behavior
-            archivebox.classList.add('dragover'); // Add 'dragover' class
-            
-        });
-    
-        archivebox.addEventListener('dragleave', function(event) {
-            archivebox.classList.remove('dragover'); // Remove 'dragover' class when leaving
-            
-        });
-    
-        archivebox.addEventListener('drop', function(event) {
-            archivebox.classList.remove('dragover'); // Remove 'dragover' class when leaving
-            
-        });
+
+    <div class="container">
+    <div class="row justify-content-center align-items-center" style="padding: 45px;">
+        <div class="col-lg-4 col-md-6 col-sm-12">
+            <section class="card cardf py-4" style="padding: 10px; background-color: purple;">
+                <div class="row">
+                    <div class="col-8 text-light">
+                        <h4>Total Profit <br>$95,595</h4>
+                    </div>
+                    <div class="col-4 market-update-right ml-2">
+                        <i class="fa fa-money-bill-trend-up"></i>
+                    </div>
+                </div>
+            </section>
+        </div>
+        <div class="col-lg-4 col-md-6 col-sm-12">
+            <section class="card cardf py-4" style="padding: 10px; background-color: purple;">
+                <div class="row">
+                    <div class="col-8 text-light">
+                        <h4>New Users <br>13,984</h4>
+                    </div>
+                    <div class="col-4 market-update-right ml-2">
+                        <i class="fa fa-users"></i>
+                    </div>
+                </div>
+            </section>
+        </div>
+        <div class="col-lg-4 col-md-6 col-sm-12">
+            <section class="card cardf py-4" style="padding: 10px; background-color: purple;">
+                <div class="row">
+                    <div class="col-8 text-light">
+                        <h4>Total Expenses <br>$12,789</h4>
+                    </div>
+                    <div class="col-4 market-update-right ml-2">
+                        <i class="fa fa-bar-chart"></i>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </div>
+</div>
+
+
+
+
+
+<div class="container-lg"> <!-- Changed to container-lg to increase size in laptop view -->
+    <div class="row justify-content-center py-5">
+        <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
         
-    </script>
+        <!-- First Card -->
+        <div class="col-md-6">
+            <section class="card">
+                <div id="donutchart"></div>
+            </section>
+        </div>
 
- <script>
-    var chart = am4core.create("chartdiv", am4charts.XYChart);
+        <!-- Second Card -->
+        <div class="col-md-6">
+            <section class="card">
+                <h2 style="text-align: center;">Products</h2>
+                <div class="table-responsive">
+                    <table class="table table-striped table-dark table-sm">
+                        <tr>
+                            <td style="color: wheat;">1</td>
+                            <td style="color: wheat;">Watch <br> Men</td>
+                            <td style="color: wheat;">$ 300</td>
+                        </tr>
+                        <tr>
+                            <td style="color: wheat;">2</td>
+                            <td style="color: wheat;">Bag <br> Women</td>
+                            <td style="color: wheat;">$ 120</td>
+                        </tr>
+                        <tr>
+                            <td style="color: wheat;">3</td>
+                            <td style="color: wheat;">Hoodie <br> Unisex</td>
+                            <td style="color: wheat;">$ 25</td>
+                        </tr>
+                        <tr>
+                            <td style="color: wheat;">4</td>
+                            <td style="color: wheat;">Shoes <br> Men</td>
+                            <td style="color: wheat;">$ 45</td>
+                        </tr>
+                    </table>
+                </div>
+            </section>
+        </div>
+        
+    </div>
+</div>
+<br><br><br><br>
 
-var subTitle = chart.titles.create();
-subTitle.text = "Revenue Growth";
-subTitle.marginBottom = 16;
-
-var title = chart.titles.create();
-title.text = "Is your business growing?";
-title.fontSize = 20;
-title.marginBottom = 4;
 
 
 
-// Add data
-chart.data = [{
-  "date": "2019 Q4",
-  "growth": 1
-}, {
-  "date": "2020 Q1",
-  "growth": 2
-}, {
-  "date": "2020 Q2",
-  "growth": 1
-}, {
-  "date": "2020 Q3",
-  "growth": 3
-}, {
-  "date": "2020 Q4",
-  "growth": 4
-}, {
-  "date": "2021 Q1",
-  "growth": 2
-}, {
-  "date": "2021 Q2",
-  "growth": 3
-}];
+<div class='title'>
+  <p>Records</p>
+   <p class="name">by William David</p>
+</div>
+<svg class='container-svg' width="529px" height="286px" viewBox="30 27 529 286" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 3.8.3 (29802) - http://www.bohemiancoding.com/sketch -->
+    <desc>Created with Sketch.</desc>
+    <defs></defs>
+    <g id="graph-copy" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd" transform="translate(30.000000, 27.000000)">
+        <g id="y_axis" font-size="11.0833333" font-family=".HelveticaNeueDeskInterface-Regular, .Helvetica Neue DeskInterface" fill="#FFFFFF" opacity="0.4" font-weight="normal">
+            <text id="0">
+                <tspan x="25.3008249" y="264.333333">0</tspan>
+            </text>
+            <text id="200">
+                <tspan x="12.7757572" y="232.666667">200</tspan>
+            </text>
+            <text id="400">
+                <tspan x="12.7757572" y="201">400</tspan>
+            </text>
+            <text id="600">
+                <tspan x="12.7757572" y="169.333333">600</tspan>
+            </text>
+            <text id="800">
+                <tspan x="12.7757572" y="137.666667">800</tspan>
+            </text>
+            <text id="1000">
+                <tspan x="6.51322328" y="106">1000</tspan>
+            </text>
+            <text id="1200">
+                <tspan x="6.51322328" y="74.3333333">1200</tspan>
+            </text>
+            <text id="1400">
+                <tspan x="6.51322328" y="42.6666667">1400</tspan>
+            </text>
+            <text id="1600">
+                <tspan x="6.51322328" y="11">1600</tspan>
+            </text>
+        </g>
+        <g id="GRAPHS" transform="translate(64.000000, 16.000000)" stroke-linecap="round" stroke-width="8" stroke-linejoin="round">
+            <polyline id="Banks" stroke="#5BCAC1" points="0 1 88.0438662 1 128.985782 137 180.170616 137 224.189573 182 256.947867 91 301.990521 137 346.009479 91 392.087202 91 429.952607 179"></polyline>
+            <polyline id="Bridge" stroke="#81DEFF" points="2.04739336 183 54.2559242 227 96.2274882 47 133.080569 1 302.018438 1 346.680361 44.6280822 386.957346 0 427.905213 43"></polyline>
+            <polyline id="PayPal" stroke="#F6F5A6" points="2.04739336 180 53.273159 180 99.2985782 91 137.175355 47 219.077488 47 256.947867 90 301.990521 47 349.080569 137 398.228672 137 432 91"></polyline>
+        </g>
+        <g id="x_axis" transform="translate(71.974046, 271.541667)" font-size="11.0833333" font-family=".HelveticaNeueDeskInterface-Regular, .Helvetica Neue DeskInterface" fill="#FFFFFF" opacity="0.4" font-weight="normal">
+            <text id="1">
+                <tspan x="0.396183206" y="11">1</tspan>
+            </text>
+            <text id="2">
+                <tspan x="39.2603361" y="11">2</tspan>
+            </text>
+            <text id="3">
+                <tspan x="78.8786567" y="11">3</tspan>
+            </text>
+            <text id="4">
+                <tspan x="118.496977" y="11">4</tspan>
+            </text>
+            <text id="5">
+                <tspan x="158.115298" y="11">5</tspan>
+            </text>
+            <text id="6">
+                <tspan x="197.733619" y="11">6</tspan>
+            </text>
+            <text id="7">
+                <tspan x="237.351939" y="11">7</tspan>
+            </text>
+            <text id="8">
+                <tspan x="276.97026" y="11">8</tspan>
+            </text>
+            <text id="9">
+                <tspan x="316.58858" y="11">9</tspan>
+            </text>
+            <text id="10">
+                <tspan x="359.229833" y="11">10</tspan>
+            </text>
+            <text id="11">
+                <tspan x="400.036703" y="11">11</tspan>
+            </text>
+            <text id="12">
+                <tspan x="438.466474" y="11">12</tspan>
+            </text>
+        </g>
+        <g id="grid" transform="translate(46.618321, 4.750000)" stroke="#FFFFFF" stroke-linecap="square" opacity="0.0800000057">
+            <path d="M0.396183206,1.1875 L478.991396,1.1875" id="Line"></path>
+            <path d="M0.396183206,32.8541667 L478.991396,32.8541667" id="Line"></path>
+            <path d="M0.396183206,64.5208333 L478.991396,64.5208333" id="Line"></path>
+            <path d="M0.396183206,96.1875 L478.991396,96.1875" id="Line"></path>
+            <path d="M0.396183206,127.854167 L478.991396,127.854167" id="Line"></path>
+            <path d="M0.396183206,159.520833 L478.991396,159.520833" id="Line"></path>
+            <path d="M0.396183206,191.1875 L478.991396,191.1875" id="Line"></path>
+            <path d="M0.396183206,222.854167 L478.991396,222.854167" id="Line"></path>
+            <path d="M0.396183206,254.520833 L478.991396,254.520833" id="Line"></path>
+        </g>
+    </g>
+</svg>
 
-// Create axes
-var categoryAxis = chart.xAxes.push(new am4charts.CategoryAxis());
-categoryAxis.dataFields.category = "date";
-categoryAxis.renderer.minGridDistance = 40;
 
-var valueAxis = chart.yAxes.push(new am4charts.ValueAxis());
-valueAxis.numberFormatter.numberFormat = "#,##'%'";
 
-// Create series
-var seriesGrowth = chart.series.push(new am4charts.LineSeries());
-seriesGrowth.dataFields.valueY = "growth";
-seriesGrowth.dataFields.categoryX = "date";
-seriesGrowth.strokeWidth = 4;
-seriesGrowth.tooltipText = "{growth}"
 
-// Drop-shaped tooltips
-seriesGrowth.tooltip.background.cornerRadius = 20;
-seriesGrowth.tooltip.background.strokeOpacity = 0;
-seriesGrowth.tooltip.pointerOrientation = "vertical";
-seriesGrowth.tooltip.label.minWidth = 40;
-seriesGrowth.tooltip.label.minHeight = 40;
-seriesGrowth.tooltip.label.textAlign = "middle";
-seriesGrowth.tooltip.label.textValign = "middle";
+    <div class="container row justify-content-center py-5 ml-2" style="padding:40px;gap:40px;justify-content: start;display: flex;flex-wrap: wrap;">
+        <section id="revenue" class="card cardf col-md-6 ml-2">
+            <h2>Revenue</h2>
+            <canvas id="revenueChart" width="500" height="300" style="background-color: wheat;"></canvas>
+        </section>
+        <section class="card cardf col">
+            <h2>Lead Generation</h2>
+            <canvas id="leadGenerationChart" width="400" height="300" style="background-color: wheat;"></canvas>
+        </section>
+    </div>
+        <br><br>
+     
+        <div class="row">
 
-// Make bullets grow on hover
-var bullet = seriesGrowth.bullets.push(new am4charts.CircleBullet());
-bullet.circle.strokeWidth = 2;
-bullet.circle.radius = 4;
-bullet.circle.fill = am4core.color("#fff");
 
-var bullethover = bullet.states.create("hover");
-bullethover.properties.scale = 1.3;
 
-// Make a panning cursor
-chart.cursor = new am4charts.XYCursor();
-chart.cursor.behavior = "panXY";
-chart.cursor.xAxis = categoryAxis;
-chart.cursor.snapToSeries = seriesGrowth;
+  <div class="col-md-6">
+    <div id="chart_div1" class="chart"></div>
+  </div>
+  <div class="col-md-6">
+    <div id="chart_div2" class="chart"></div>
+  </div>
+</div>   <br><br>
 
-var target = valueAxis.axisRanges.create();
-target.grid.above = true;
-target.value = 4;
-target.grid.stroke = am4core.color("#757575");
-target.grid.strokeWidth = 2;
-target.grid.strokeOpacity = 0.5;
-target.grid.strokeDasharray = "3,3";
-target.label.inside = true;
-target.label.text = "Target";
-target.label.fill = target.grid.stroke;
-target.label.align = "right";
-target.label.verticalCenter = "bottom";
-
-// var greenRange = valueAxis.axisRanges.create();
-// greenRange.value = 0;
-// greenRange.endValue = 10;
-// greenRange.axisFill.fill = am4core.color("#4CAF50");
-// greenRange.axisFill.fillOpacity = 0.2;
-// greenRange.grid.strokeOpacity = 0;
-    </script>   
+<div class="container-fluid">
+    <div class="quick-stats">
+       
+        <div class="row">
+            <div class="chart col-md-4 col-sm-4 col-xs-12">
+                <div class="chart-inner stat-1">
+                    <div class="header">
+                        <div class="tagline">Page views</div>
+                        <div class="count">5,923</div>
+                        <div class="velocity">
+                            8%
+                            <i class="icon icon-arrow-up"></i>
+                        </div>
+                        <canvas id="lineChart_1" height="100"></canvas>
+                    </div>
+                </div>
+            </div>
+            <div class="chart col-md-4 col-sm-4 rounded hidden-xs">
+                <div class="chart-inner stat-2">
+                    <div class="header">
+                        <div class="tagline">Unique visitors</div>
+                        <div class="count">1,277</div>
+                        <div class="velocity">
+                            14%
+                            <i class="icon icon-arrow-up"></i>
+                        </div>
+                        <canvas id="lineChart_2" height="100"></canvas>
+                    </div>
+                </div>
+            </div>
+            <div class="chart col-md-4 col-sm-4 hidden-xs">
+                <div class="chart-inner stat-3">
+                    <div class="header">
+                        <div class="tagline">Active users</div>
+                        <div class="count">814</div>
+                        <div class="velocity">
+                            2.5%
+                            <i class="icon icon-arrow-down"></i>
+                        </div>
+                        <canvas id="lineChart_3" height="100"></canvas>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+      
+        <main class="py-6 bg-surface-secondary" >
+            <div class="container-fluid">
+                <div class="container mt-3 mb-3 pt-1">
+                    <div class="row">
+                        {% if '1' not in dashboard %}
+                        <div class="col-sm-3 mb-3">
+                            <div id="draggable1" class="card crd draggable-card" draggable="true" onclick="toggleSelection('draggable1')">
+                                <div class="side front">
+                                    <div class="card-body" style="background-color: black;height:200px;" >
+                                        <h4 class="card-title text-light">Lemon</h4>
+                                        <h5 class="card-subtitle mb-2 text-muted">Cust:Litware</h5>
+                        <h6 class="text-light">Date:01/06/23</h6>
+                        <h6 class="text-light">Origin:Web</h6>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        {% endif %}
     
-</body>
+                        {% if '2' not in dashboard %}
+                        <div class="col-sm-3 mb-3">
+                            <div id="draggable2" class="card crd draggable-card" draggable="true" onclick="toggleSelection('draggable2')">
+                                <div class="side front">
+                                  <div class="card-body" style="background-color:black;height:200px;" >
+                        <h4 class="card-title text-light">Purple</h4>
+                        <h5 class="card-subtitle mb-2 text-muted">Cust:Daniel</h5>
+                        <h6 class="text-light">Date:01/05/23</h6>
+                        <h6 class="text-light">Origin:Email</h6>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        {% endif %}
+    
+                        {% if '3' not in dashboard %}
+                        <div class="col-sm-3 mb-3">
+                            <div id="draggable3" class="card crd draggable-card" draggable="true" onclick="toggleSelection('draggable3')">
+                                <div class="side front">
+                                  <div class="card-body" style="background-color:black;height:200px;" >
+                        <h4 class="card-title text-light">Altos</h4>
+                        <h5 class="card-subtitle mb-2 text-muted">Cust:Derick</h5>
+                        <h6 class="text-light">Date:30/05/23</h6>
+                        <h6 class="text-light">Origin:Web</h6>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        {% endif %}
+    
+                        {% if '4' not in dashboard %}
+                        <div class="col-sm-3 mb-3">
+                            <div id="draggable4" class="card crd draggable-card" draggable="true" onclick="toggleSelection('draggable4')">
+                                <div class="side front">
+                                  <div class="card-body" style="background-color:black;height:200px;" >
+                        <h4 class="card-title text-light">ABC</h4>
+                        <h5 class="card-subtitle mb-2 text-muted">Cust:Emma</h5>
+                        <h6 class="text-light">Date:11/04/23</h6>
+                        <h6 class="text-light">Origin:Email</h6>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        {% endif %}
+                    </div>
+                </div>
+          
+          
+                <!-- Add a pop-up element -->
+                <div id="popup" class="popup" ondrop="drop(event)" ondragover="allowDrop(event)"
+                  <div class="popup-content">
+                    <img src="{% static 'images/archiveicon.png' %}" style="height: 50px; width: 50px;"  class="img-fluid">
+                  </div>
+                </div>
+          
+               <br>
+               <br>
+               <center>
+                <button onclick="dropSelectedToArchive()">Drop Selected to Archive</button>
+            </center>
+
+            </div>
+            
+      
+        </main>
+        
+  </div>
+  
+    
+    
+  
+      <br>
+   
+      <script>
+        // Revenue Chart
+        var revenueData = {
+            labels: ['January', 'February', 'March', 'April', 'May', 'June'],
+            datasets: [{
+                label: 'Revenue ($)',
+                data: [10000, 15000, 20000, 25000, 30000, 35000],
+                backgroundColor: 'blue',
+                borderColor: 'red',
+                borderWidth: 2
+            }]
+        };
+
+        var revenueChart = new Chart(document.getElementById('revenueChart'), {
+            type: 'line',
+            data: revenueData,
+            options: {
+                scales: {
+                    y: {
+                        beginAtZero: true
+                    }
+                }
+            }
+        });
+
+        // Lead Generation Chart
+        var leadGenerationData = {
+            labels: ['Website', 'Referrals', 'Events', 'Email Campaigns'],
+            datasets: [{
+                label: 'Conversion Rate (%)',
+                data: [40, 30, 20, 10],
+                backgroundColor: [
+                'red',
+                'blue',
+                'red',
+                'blue',
+                'red'
+                ],
+                borderColor: [
+                'rgba(75, 192, 192, 1)',
+                'rgba(75, 192, 192, 1)',
+                'rgba(75, 192, 192, 1)',
+                'rgba(75, 192, 192, 1)',
+                'rgba(75, 192, 192, 1)'
+                ],
+                borderWidth: 1
+            }]
+        };
+
+        var leadGenerationChart = new Chart(document.getElementById('leadGenerationChart'), {
+            type: 'bar',
+            data: leadGenerationData,
+            options: {
+                scales: {
+                    y: {
+                        beginAtZero: true
+                    }
+                }
+            }
+        });
+ 
+    </script> 
+
+<script>
+    document.querySelectorAll('.crd').forEach(card => {
+        card.addEventListener('dragstart', function(e) {
+            e.dataTransfer.setData('text/plain', card.id);
+            document.getElementById('popup').style.display = "block";
+        });
+
+       
+        card.addEventListener('touchstart', function(e) {
+            e.preventDefault();
+            var touch = e.touches[0];
+            e.dataTransfer.setData('text/plain', card.id);
+            document.getElementById('popup').style.display = "block"; 
+        });
+    });
+
+    document.getElementById('popup').addEventListener('dragover', function(e) {
+        e.preventDefault();
+    });
+
+    document.getElementById('popup').addEventListener('drop', function(e) {
+        e.preventDefault();
+        document.getElementById('popup').style.display = "none";
+        var data = e.dataTransfer.getData('text/plain');
+        if (data) {
+            var card = document.getElementById(data);
+            card.parentNode.removeChild(card); 
+        }
+    });
+
+    document.addEventListener('dragover', function(e) {
+        e.preventDefault();
+    });
+
+    document.addEventListener('drop', function(e) {
+        e.preventDefault();
+        document.getElementById('popup').style.display = "none";
+    });
+
+   
+    function redirectToSecondPage() {
+        var cardIds = [];
+        document.querySelectorAll('.crd').forEach(card => {
+            var cardId = card.id.replace('draggable', '');
+            cardIds.push(cardId);
+        });
+        var linkToSecondPage = '{% url "archivec" %}?item_ids=' + cardIds.join(',');
+        window.location.href = linkToSecondPage; 
+    }
+
+    document.addEventListener("DOMContentLoaded", function() {
+        const enquiryBox = document.getElementById("enquiry-box");
+        const enquiryLink = document.getElementById("enquiry-link");
+        const closeEnquiryBox = document.getElementById("close-enquiry-box");
+        
+        enquiryLink.addEventListener("click", function(event) {
+            event.preventDefault();
+            enquiryBox.style.display = "block";
+        });
+    
+        closeEnquiryBox.addEventListener("click", function() {
+            enquiryBox.style.display = "none";
+        });
+
+      
+        enquiryLink.addEventListener("touchstart", function(event) {
+            event.preventDefault();
+            enquiryBox.style.display = "block";
+        });
+
+        closeEnquiryBox.addEventListener("touchstart", function(event) {
+            event.preventDefault();
+            enquiryBox.style.display = "none";
+        });
+    });
+
+    // Function to toggle selection of a card
+    function toggleSelection(cardId) {
+        var card = document.getElementById(cardId);
+        card.classList.toggle('selected');
+    }
+
+    // Function to handle dropping selected cards to the archive
+    function dropSelectedToArchive() {
+        var archive = document.getElementById('popup');
+        document.querySelectorAll('.crd.selected').forEach(card => {
+            archive.appendChild(card);
+        });
+        // Clear selection after dropping
+        document.querySelectorAll('.crd.selected').forEach(card => {
+            card.classList.remove('selected');
+        });
+    }
+
+    // Function to allow dropping cards into the archive
+    function allowDrop(ev) {
+        ev.preventDefault();
+    }
+
+    // Function to handle dropping cards into the archive
+    function drop(ev) {
+        ev.preventDefault();
+        var data = ev.dataTransfer.getData("text");
+        var card = document.getElementById(data);
+        card.parentNode.removeChild(card);
+        // Here, you can perform any additional actions, such as marking the card as archived
+    }
+
+
+
+</script>
+
+
+
+
+<script>
+  $(document).ready(function(){
+
+google.charts.load("current", {packages:["corechart"]});
+google.charts.setOnLoadCallback(drawChart);
+function drawChart() {
+var data = google.visualization.arrayToDataTable([
+['Active', 'Hours per Day'],
+['Inactive', 11],
+['Pending', 2],
+['Premium', 2],
+['Free', 2],
+['Others', 7]
+]);
+
+var options = {
+title: 'User Activities',
+
+pieHole: 0.3,
+};
+
+var chart = new google.visualization.PieChart(document.getElementById('donutchart'));
+chart.draw(data, options);
+}
+
+});
+  </script>
+
+  
+<script>
+    google.load("visualization", "1", {packages:["corechart"]});
+google.setOnLoadCallback(drawChart1);
+function drawChart1() {
+  var data = google.visualization.arrayToDataTable([
+    ['Year', 'Sales', 'Expenses'],
+    ['2004',  1000,      400],
+    ['2005',  1170,      460],
+    ['2006',  660,       1120],
+    ['2007',  1030,      540]
+  ]);
+
+  var options = {
+    title: 'Company Performance',
+    hAxis: {title: 'Year', titleTextStyle: {color: 'green'}}
+ };
+
+var chart = new google.visualization.ColumnChart(document.getElementById('chart_div1'));
+  chart.draw(data, options);
+}
+
+google.load("visualization", "1", {packages:["corechart"]});
+google.setOnLoadCallback(drawChart2);
+function drawChart2() {
+  var data = google.visualization.arrayToDataTable([
+    ['Year', 'Sales', 'Expenses'],
+    ['2013',  1000,      400],
+    ['2014',  1170,      460],
+    ['2015',  660,       1120],
+    ['2016',  1030,      540]
+  ]);
+
+  var options = {
+    title: 'Company Performance',
+    hAxis: {title: 'Year',  titleTextStyle: {color: 'yellow'}},
+    vAxis: {minValue: 0}
+  };
+
+  var chart = new google.visualization.AreaChart(document.getElementById('chart_div2'));
+  chart.draw(data, options);
+}
+
+$(window).resize(function(){
+  drawChart1();
+  drawChart2();
+});
+
+// Reminder: you need to put https://www.google.com/jsapi in the head of your document or as an external resource on codepen //
+    </script>
+<script>
+    class Charts {
+	chartOptions;
+	constructor() {
+		this.chartOptions = {
+			scales: {
+				xAxes: [{
+					display: false
+				}],
+				yAxes: [{
+					display: false
+				}]
+			},
+			tooltips: {
+				enabled: false
+			},
+			legend: {
+				display: false
+			}
+		};
+		this.initLineCurved();
+	}
+	
+	initLineCurved(): void {
+		var ctx_1 = $("#lineChart_1"),
+			 ctx_2 = $("#lineChart_2"),
+			 ctx_3 = $("#lineChart_3"),
+			 chartData_1 = {
+				type: 'line',
+				data: {
+					labels: ["A", "B", "C", "D", "E", "F"],
+					datasets: [
+						{
+							lineTension: 0.3,
+							borderColor: "rgb(255, 255, 255)",
+							backgroundColor: "rgba(255, 255, 255, 0.3)",
+							pointBorderWidth: 0,
+							pointRadius: 0,
+							data: [35, 59, 78, 60, 81, 65]
+						}
+					]
+				},
+				options: this.chartOptions
+			},
+			 chartData_2 = {
+				type: 'line',
+				data: {
+					labels: ["A", "B", "C", "D", "E", "F"],
+					datasets: [
+						{
+							lineTension: 0.3,
+							borderColor: "rgb(255, 255, 255)",
+							backgroundColor: "rgba(255, 255, 255, 0.3)",
+							pointBorderWidth: 0,
+							pointRadius: 0,
+							data: [35, 29, 78, 61, 81, 65]
+						}
+					]
+				},
+				options: this.chartOptions
+			},
+			 chartData_3 = {
+				type: 'line',
+				data: {
+					labels: ["A", "B", "C", "D", "E", "F"],
+					datasets: [
+						{
+							lineTension: 0.3,
+							borderColor: "rgb(255, 255, 255)",
+							backgroundColor: "rgba(255, 255, 255, 0.3)",
+							pointBorderWidth: 0,
+							pointRadius: 0,
+							data: [30, 34, 78, 60, 81, 95]
+						}
+					]
+				},
+				options: this.chartOptions
+			},
+			 
+			 myLineChart_1 = new Chart(ctx_1, chartData_1),
+			 myLineChart_2 = new Chart(ctx_2, chartData_2),
+			 myLineChart_3 = new Chart(ctx_3, chartData_3);
+	}
+	convertHex(hex, opacity) {
+		hex = hex.replace('#','');
+		var r = parseInt(hex.substring(0,2), 16);
+		var g = parseInt(hex.substring(2,4), 16);
+		var b = parseInt(hex.substring(4,6), 16);
+		
+		var result = 'rgba('+r+','+g+','+b+','+opacity/100+')';
+		return result;
+	}
+}
+
+new Charts();
+</script>
+
 {% endblock %}
+
+</body>
+</html>
